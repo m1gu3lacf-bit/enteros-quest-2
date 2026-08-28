@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Enteros Quest</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #10172e, #203d70);
+    color: white;
+}
+
+header {
+    text-align: center;
+    padding: 30px 15px;
+    background: rgba(0,0,0,0.25);
+}
+
+header h1 {
+    font-size: 42px;
+}
+
+header p {
+    margin-top: 10px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+nav button {
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    background: #31518e;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+nav button:hover {
+    background: #4b72bd;
+}
+
+.seccion {
+    display: none;
+    max-width: 900px;
+    margin: auto;
+    padding: 25px;
+}
+
+.activa {
+    display: block;
+}
+
+.hero {
+    text-align: center;
+    padding: 40px 10px;
+}
+
+.hero h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.tarjetas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.tarjeta {
+    background: rgba(255,255,255,0.1);
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.juego {
+    background: rgba(0,0,0,0.3);
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.juego h2 {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.aprendizaje {
+    margin-bottom: 20px;
+}
+
+.info {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 20px 0;
+    font-size: 18px;
+}
+
+.timer {
+    font-size: 30px;
+    font-weight: bold;
+    margin: 15px;
+}
+
+.problema {
+    font-size: 38px;
+    font-weight: bold;
+    margin: 30px 0;
+}
+
+.opciones {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.opcion {
+    border: none;
+    padding: 18px;
+    border-radius: 12px;
+    background: #31518e;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.opcion:hover {
+    background: #4b72bd;
+    transform: scale(1.03);
+}
+
+.mensaje {
+    min-height: 30px;
+    margin: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.boton {
+    border: none;
+    padding: 13px 25px;
+    border-radius: 10px;
+    background: #f0b429;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.final {
+    display: none;
+    margin-top: 25px;
+    padding: 25px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 15px;
+}
+
+@media(max-width:600px) {
+
+    header h1 {
+        font-size: 30px;
+    }
+
+    .problema {
+        font-size: 28px;
+    }
+
+    .opciones {
+        grid-template-columns: 1fr;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<h1>🎮 ENTEROS QUEST</h1>
+
+<p>El desafío infinito de los números enteros</p>
+
+</header>
+
+
+<nav>
+
+<button onclick="mostrarInicio()">🏠 Inicio</button>
+
+<button onclick="mostrarAprendizajes()">📚 Aprendizajes</button>
+
+<button onclick="iniciarJuego()">🚀 Jugar</button>
+
+</nav>
+
+
+<section id="inicio" class="seccion activa">
+
+<div class="hero">
+
+<h2>🔥 ¡Prepárate para el desafío!</h2>
+
+<p>
+Resuelve preguntas de números enteros,
+sube de nivel y demuestra cuánto sabes.
+</p>
+
+<br>
+
+<button class="boton" onclick="iniciarJuego()">
+🎮 COMENZAR
+</button>
+
+</div>
+
+</section>
+
+
+<section id="aprendizajes" class="seccion">
+
+<h2>📚 Aprendizajes</h2>
+
+<div class="tarjetas">
+
+<div class="tarjeta">
+
+<h3>🔢 Números enteros</h3>
+
+<p>
+Reconocer y trabajar con números positivos,
+negativos y el cero.
+</p>
+
+</div>
+
+
+<div class="tarjeta">
+
+<h3>➕➖ Operaciones</h3>
+
+<p>
+Resolver sumas y restas con números enteros.
+</p>
+
+</div>
+
+
+<div class="tarjeta">
+
+<h3>✖️➗ Signos</h3>
+
+<p>
+Aplicar correctamente las reglas de los signos.
+</p>
+
+</div>
+
+
+<div class="tarjeta">
+
+<h3>⚡ Potencias</h3>
+
+<p>
+Resolver potencias de números enteros.
+</p>
+
+</div>
+
+
+<div class="tarjeta">
+
+<h3>🧮 Jerarquía</h3>
+
+<p>
+Resolver operaciones respetando el orden
+correcto de las operaciones.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section id="juego" class="seccion">
+
+<div class="juego">
+
+<h2>🚀 Misión Matemática</h2>
+
+<p class="aprendizaje">
+Aprende mientras avanzas por niveles.
+</p>
+
+
+<div class="info">
+
+<span>
+⭐ Puntos:
+<b id="puntos">0</b>
+</span>
+
+<span>
+❤️ Vidas:
+<b id="vidas">3</b>
+</span>
+
+<span>
+🏆 Nivel:
+<b id="nivel">1</b>
+</span>
+
+</div>
+
+
+<div class="timer">
+
+⏱️ <span id="tiempo">10</span>
+
+</div>
+
+
+<div id="problema" class="problema">
+Preparando pregunta...
+</div>
+
+
+<div id="opciones" class="opciones"></div>
+
+
+<div id="mensaje" class="mensaje"></div>
+
+
+<div id="final" class="final">
+
+<h2>💀 ¡Partida terminada!</h2>
+
+<br>
+
+<p>
+Puntuación:
+<b id="puntosFinales">0</b>
+</p>
+
+<br>
+
+<p>
+Nivel alcanzado:
+<b id="nivelFinal">1</b>
+</p>
+
+<br>
+
+<button class="boton" onclick="iniciarJuego()">
+🔄 JUGAR DE NUEVO
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<script>
+
+
+let puntos = 0;
+
+let vidas = 3;
+
+let nivel = 1;
+
+let tiempo = 10;
+
+let respuestaCorrecta = 0;
+
+let respondido = false;
+
+let intervalo;
+
+
+// -------------------------
+// CAMBIAR SECCIONES
+// -------------------------
+
+function ocultarTodo() {
+
+    document.querySelectorAll(".seccion").forEach(
+        seccion => seccion.classList.remove("activa")
+    );
+
+}
+
+
+function mostrarInicio() {
+
+    ocultarTodo();
+
+    document.getElementById("inicio")
+    .classList.add("activa");
+
+}
+
+
+function mostrarAprendizajes() {
+
+    ocultarTodo();
+
+    document.getElementById("aprendizajes")
+    .classList.add("activa");
+
+}
+
+
+// -------------------------
+// INICIAR JUEGO
+// -------------------------
+
+function iniciarJuego() {
+
+    puntos = 0;
+
+    vidas = 3;
+
+    nivel = 1;
+
+    document.getElementById("final")
+    .style.display = "none";
+
+    ocultarTodo();
+
+    document.getElementById("juego")
+    .classList.add("activa");
+
+    actualizarDatos();
+
+    nuevaPregunta();
+
+}
+
+
+// -------------------------
+// ACTUALIZAR DATOS
+// -------------------------
+
+function actualizarDatos() {
+
+    document.getElementById("puntos")
+    .textContent = puntos;
+
+    document.getElementById("vidas")
+    .textContent = vidas;
+
+    document.getElementById("nivel")
+    .textContent = nivel;
+
+}
+
+
+// -------------------------
+// TEMPORIZADOR
+// -------------------------
+
+function iniciarTemporizador() {
+
+    clearInterval(intervalo);
+
+    tiempo = 10;
+
+    document.getElementById("tiempo")
+    .textContent = tiempo;
+
+
+    intervalo = setInterval(function() {
+
+        tiempo--;
+
+        document.getElementById("tiempo")
+        .textContent = tiempo;
+
+
+        if(tiempo <= 0) {
+
+            clearInterval(intervalo);
+
+            tiempoAgotado();
+
+        }
+
+    }, 1000);
+
+}
+
+
+// -------------------------
+// TIEMPO AGOTADO
+// -------------------------
+
+function tiempoAgotado() {
+
+    if(respondido) return;
+
+    respondido = true;
+
+    vidas--;
+
+    document.getElementById("mensaje")
+    .textContent =
+    "⏰ ¡Se acabó el tiempo!";
+
+    desactivarBotones();
+
+    actualizarDatos();
+
+
+    if(vidas <= 0) {
+
+        terminarJuego();
+
+    } else {
+
+        setTimeout(nuevaPregunta, 1200);
+
+    }
+
+}
+
+
+// -------------------------
+// NUEVA PREGUNTA
+// -------------------------
+
+function nuevaPregunta() {
+
+    respondido = false;
+
+    document.getElementById("mensaje")
+    .textContent = "";
+
+    let pregunta = generarPregunta();
+
+    respuestaCorrecta = pregunta.respuesta;
+
+    document.getElementById("problema")
+    .textContent = pregunta.texto;
+
+    crearOpciones(respuestaCorrecta);
+
+    iniciarTemporizador();
+
+}
+
+
+// -------------------------
+// GENERAR PREGUNTAS
+// -------------------------
+
+function generarPregunta() {
+
+    // NIVEL 1-2
+    if(nivel <= 2) {
+
+        let a = aleatorio(-20,20);
+
+        let b = aleatorio(-20,20);
+
+        let suma = Math.random() < 0.5;
+
+        if(suma) {
+
+            return {
+
+                texto:
+                `${formato(a)} + ${formato(b)} = ?`,
+
+                respuesta:
+                a + b
+
+            };
+
+        } else {
+
+            return {
+
+                texto:
+                `${formato(a)} − ${formato(b)} = ?`,
+
+                respuesta:
+                a - b
+
+            };
+
+        }
+
+    }
+
+
+    // NIVEL 3-4
+    if(nivel <= 4) {
+
+        let a = aleatorio(-10,10);
+
+        let b = aleatorio(-10,10);
+
+        let multiplicacion =
+        Math.random() < 0.6;
+
+
+        if(multiplicacion) {
+
+            return {
+
+                texto:
+                `${formato(a)} × ${formato(b)} = ?`,
+
+                respuesta:
+                a * b
+
+            };
+
+        }
+
+
+        if(b === 0) b = 2;
+
+
+        let resultado = aleatorio(-10,10);
+
+        if(resultado === 0)
+            resultado = 2;
+
+
+        let dividendo = b * resultado;
+
+
+        return {
+
+            texto:
+            `${formato(dividendo)} ÷ ${formato(b)} = ?`,
+
+            respuesta:
+            resultado
+
+        };
+
+    }
+
+
+    // NIVEL 5-6
+    if(nivel <= 6) {
+
+        let base = aleatorio(-5,5);
+
+        let exponente = aleatorio(2,3);
+
+        let respuesta = Math.pow(base, exponente);
+
+
+        return {
+
+            texto:
+            `${formato(base)}${superindice(exponente)} = ?`,
+
+            respuesta:
+            respuesta
+
+        };
+
+    }
+
+
+    // NIVEL 7-8
+    if(nivel <= 8) {
+
+        let a = aleatorio(-10,10);
+
+        let b = aleatorio(-5,5);
+
+        let c = aleatorio(-5,5);
+
+
+        if(b === 0) b = 2;
+
+        if(c === 0) c = -2;
+
+
+        let respuesta =
+        a + b * c;
+
+
+        return {
+
+            texto:
+            `${formato(a)} + (${formato(b)} × ${formato(c)}) = ?`,
+
+            respuesta:
+            respuesta
+
+        };
+
+    }
+
+
+    // NIVEL 9+
+    let base = aleatorio(-5,5);
+
+    let exponente = aleatorio(2,3);
+
+    let a = aleatorio(-10,10);
+
+    let b = aleatorio(-5,5);
+
+
+    if(b === 0)
+        b = 2;
+
+
+    let potencia =
+    Math.pow(base, exponente);
+
+
+    let respuesta =
+    potencia + a * b;
+
+
+    return {
+
+        texto:
+        `${formato(base)}${superindice(exponente)}
+        + (${formato(a)} × ${formato(b)}) = ?`,
+
+        respuesta:
+        respuesta
+
+    };
+
+}
+
+
+// -------------------------
+// CREAR OPCIONES
+// -------------------------
+
+function crearOpciones(correcta) {
+
+    let opciones = [correcta];
+
+
+    while(opciones.length < 4) {
+
+        let variacion =
+        aleatorio(-10,10);
+
+
+        if(variacion === 0)
+            variacion = 3;
+
+
+        let opcion =
+        correcta + variacion;
+
+
+        if(!opciones.includes(opcion)) {
+
+            opciones.push(opcion);
+
+        }
+
+    }
+
+
+    opciones.sort(() => Math.random() - 0.5);
+
+
+    let contenedor =
+    document.getElementById("opciones");
+
+
+    contenedor.innerHTML = "";
+
+
+    opciones.forEach(function(opcion) {
+
+        let boton =
+        document.createElement("button");
+
+
+        boton.className = "opcion";
+
+        boton.textContent = opcion;
+
+
+        boton.onclick = function() {
+
+            comprobar(opcion);
+
+        };
+
+
+        contenedor.appendChild(boton);
+
+    });
+
+}
+
+
+// -------------------------
+// COMPROBAR RESPUESTA
+// -------------------------
+
+function comprobar(respuesta) {
+
+    if(respondido) return;
+
+
+    respondido = true;
+
+    clearInterval(intervalo);
+
+    desactivarBotones();
+
+
+    if(respuesta === respuestaCorrecta) {
+
+        puntos++;
+
+        document.getElementById("mensaje")
+        .textContent =
+        "✅ ¡Correcto! +1 punto";
+
+
+        // Cada 10 puntos sube de nivel
+        nivel =
+        Math.floor(puntos / 10) + 1;
+
+
+        actualizarDatos();
+
+
+        setTimeout(nuevaPregunta, 900);
+
+
+    } else {
+
+        vidas--;
+
+
+        document.getElementById("mensaje")
+        .textContent =
+        `❌ Incorrecto. Era ${respuestaCorrecta}`;
+
+
+        actualizarDatos();
+
+
+        if(vidas <= 0) {
+
+            setTimeout(terminarJuego, 900);
+
+        } else {
+
+            setTimeout(nuevaPregunta, 1200);
+
+        }
+
+    }
+
+}
+
+
+// -------------------------
+// DESACTIVAR BOTONES
+// -------------------------
+
+function desactivarBotones() {
+
+    document.querySelectorAll(".opcion")
+    .forEach(function(boton) {
+
+        boton.disabled = true;
+
+    });
+
+}
+
+
+// -------------------------
+// FINAL
+// -------------------------
+
+function terminarJuego() {
+
+    clearInterval(intervalo);
+
+    document.getElementById("puntosFinales")
+    .textContent = puntos;
+
+    document.getElementById("nivelFinal")
+    .textContent = nivel;
+
+    document.getElementById("final")
+    .style.display = "block";
+
+}
+
+
+// -------------------------
+// NÚMERO ALEATORIO
+// -------------------------
+
+function aleatorio(min,max) {
+
+    return Math.floor(
+        Math.random() * (max-min+1)
+    ) + min;
+
+}
+
+
+// -------------------------
+// FORMATO
+// -------------------------
+
+function formato(numero) {
+
+    if(numero < 0) {
+
+        return `(${numero})`;
+
+    }
+
+    return numero;
+
+}
+
+
+// -------------------------
+// SUPERÍNDICES
+// -------------------------
+
+function superindice(numero) {
+
+    const simbolos = {
+
+        0:"⁰",
+
+        1:"¹",
+
+        2:"²",
+
+        3:"³",
+
+        4:"⁴",
+
+        5:"⁵"
+
+    };
+
+
+    return simbolos[numero] || `^${numero}`;
+
+}
+
+</script>
+
+</body>
+</html>
